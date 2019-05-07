@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import MoveSearchForm from './MoveSearchForm/MoveSearchForm';
 
 class MovesContainer extends Component{
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
         this.state = {
             moves: []
         }
@@ -12,7 +12,7 @@ class MovesContainer extends Component{
         this.searchMoves({search: ""});
     }
     searchMoves = async (formData) => {
-        const searchURL = `"https://pokeapi.co/api/v2/move?search="${formData.search}`;
+        const searchURL = `https://pokeapi.co/api/v2/move?search=${formData.search}`;
         const result = await fetch(searchURL);
         const parsedResult = await result.json();
         this.setState({
@@ -21,7 +21,7 @@ class MovesContainer extends Component{
     }
     render(){
         const movesList = this.state.moves.map((move)=>{
-            return(<div key={"results"}>
+            return(<div key={move.name}>
                 <h5>{move.name}</h5>
                 <p>It is a {move.name}</p>
             </div>)

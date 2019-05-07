@@ -12,11 +12,11 @@ class PokemonContainer extends Component{
         this.searchPokemon({search: ""});
     }
     searchPokemon = async (formData) => {
-        const searchURL = `"https://pokeapi.co/api/v2/pokemon?search="${formData.search}`
+        const searchURL = `https://pokeapi.co/api/v2/pokemon?search=${formData.search}`
         const result = await fetch(searchURL);
         const parsedResult = await result.json();
         this.setState({
-            pokemon: parsedResult.results.filter(name)
+            pokemon: parsedResult.results.filter(pokemon => pokemon.name)
         })
     }
     render(){
